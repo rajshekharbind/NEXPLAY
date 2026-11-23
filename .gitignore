@@ -18,8 +18,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
@@ -36,6 +34,10 @@ env/
 htmlcov/
 *.db
 *.sqlite3
+
+# Ensure frontend/lib is tracked
+!frontend/lib/
+!frontend/lib/**
 
 # Node.js / Next.js
 node_modules/
