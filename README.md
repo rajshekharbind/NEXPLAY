@@ -4,6 +4,22 @@
 > **Mission:** Unified entertainment discovery, subscription tracking, and intelligent AI navigation across 40+ streaming, music, video, anime, and podcast services.
 
 ---
+<img width="1888" height="975" alt="image" src="https://github.com/user-attachments/assets/ea1b7da8-c0dc-4bce-a8e6-096511848727" />
+
+<img width="1897" height="941" alt="image" src="https://github.com/user-attachments/assets/90d8796c-3697-4eec-b567-3c5b35ecab15" />
+<img width="1890" height="945" alt="image" src="https://github.com/user-attachments/assets/2c38b954-c930-4328-966e-b58ed36cbc73" />
+<img width="1902" height="975" alt="image" src="https://github.com/user-attachments/assets/f56a3033-afbb-4586-bddb-1ada0744d676" />
+<img width="1906" height="980" alt="image" src="https://github.com/user-attachments/assets/3f67a399-cca2-4280-8102-929073578006" />
+
+<img width="1897" height="976" alt="image" src="https://github.com/user-attachments/assets/ba4dd6ba-1031-4ff1-852d-2e07ebecc8e3" />
+<img width="1887" height="968" alt="image" src="https://github.com/user-attachments/assets/11e415f7-cb48-4e10-a555-cc331ff24b18" />
+<img width="1900" height="975" alt="image" src="https://github.com/user-attachments/assets/5778043a-3e6e-4f17-8b5a-df47c1d3d846" />
+<img width="1833" height="977" alt="image" src="https://github.com/user-attachments/assets/76152122-6628-4c07-957c-054621ccedd2" />
+<img width="1885" height="981" alt="image" src="https://github.com/user-attachments/assets/b2baeb1f-1533-4938-b82b-1dd113d9393d" />
+<img width="1897" height="975" alt="image" src="https://github.com/user-attachments/assets/50552423-28c2-4e3d-94dc-ad59f0c63989" />
+<img width="1892" height="978" alt="image" src="https://github.com/user-attachments/assets/f02beaeb-18dc-4d44-a378-626a83978395" />
+<img width="1895" height="973" alt="image" src="https://github.com/user-attachments/assets/409d0fde-437d-44d6-b8b4-b4f4f010fc39" />
+
 
 ## 🌟 Key Features
 
