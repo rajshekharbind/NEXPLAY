@@ -232,3 +232,26 @@ DELETE http://localhost:8000/api/v1/admin/platforms/{id} — Deactivate/delete p
 - [ ] **Phase 8: Playwright Automation & Celery** — Deep link audits, background task workers.
 - [ ] **Phase 9: Billing & Credit Wallet** — Razorpay payment integration, credit balance management, usage metering.
 - [ ] **Phase 10: DevOps, Production CI/CD & Testing** — Security auditing, E2E tests, cloud deployment.
+
+
+
+
+ 🎬 NEXPLAY — Unified Entertainment Aggregator & AI Discovery Hub
+
+Brand Slogan: "One Account. Every Entertainment Destination."
+GitHub Repository: https://github.com/rajshekharbind/NEXPLAY
+Backend API (Render): https://nexplay-backend-lpdz.onrender.com
+Interactive API Docs (Swagger): https://nexplay-backend-lpdz.onrender.com/docs
+Frontend Web App (Vercel): https://nexplay.vercel.app
+
+🌟 3. Complete Feature Summary (All 10 Stages)
+Stage 1: System Foundation: 25 SQLAlchemy models, 43 seeded entertainment platforms across 6 categories.
+Stage 2: Auth & RBAC Security: Secure JWT token rotation, user profile initialization, and role guards (USER, PREMIUM_USER, ADMIN).
+Stage 3: Platform Directory & Admin CRUD: 43-platform directory with category tabs and admin management interface.
+Stage 4: Unified Catalog Search: Cross-platform search engine covering Movies, Series, Songs, Podcasts, and Anime with direct deep links.
+Stage 5: Private Watchlist System: User-isolated queue with 1-click bookmarking and status tracking (WATCHING, COMPLETED, PLANNED).
+Stage 6: AI Copilot & Mood Engine: Conversational AI discovery, 6 mood presets, multi-factor ranking, and credit accounting.
+Stage 7: Model Context Protocol (MCP): Anthropic-compliant tool server with 11 native entertainment discovery tools and JSON-RPC 2.0 gateway.
+Stage 8: Background Workers & Link Health Sentinel: Scheduled automation jobs, Playwright health checks, and subscription renewal alerts.
+Stage 9: Enterprise Billing & Spending Intelligence: Credit wallet analytics, 4 volume booster packs, external streaming subscription tracker (Netflix, Spotify, Prime), and 18% GST tax invoices.
+Stage 10: Production Deployment & CI/CD: Live deployment on Render (Backend) and Vercel (Frontend) with Docker readiness.
