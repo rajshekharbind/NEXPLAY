@@ -7,6 +7,7 @@ import Link from "next/link";
 import Card3D from "@/components/Card3D";
 import { FALLBACK_PLATFORMS, FALLBACK_CATEGORIES } from "@/lib/constants";
 import { Platform, PlatformCategory } from "@/types";
+import { fetchCategories, fetchPlatforms } from "@/lib/api";
 
 function getBrandGlow(slug: string): string {
   if (slug.includes("netflix")) return "rgba(229, 9, 20, 0.5)";
@@ -46,16 +47,16 @@ function PlatformsDirectoryContent() {
     async function loadData() {
       setLoading(true);
       try {
-        const [catRes, platRes] = await Promise.allSettled([
-          fetch("http://localhost:8000/api/v1/platforms/categories").then((r) => r.json()),
-          fetch("http://localhost:8000/api/v1/platforms/").then((r) => r.json()),
+        const [cats, plats] = await Promise.all([
+          fetchCategories(),
+          fetchPlatforms()
         ]);
 
-        if (catRes.status === "fulfilled" && catRes.value?.success && catRes.value?.data?.length > 0) {
-          setCategories(catRes.value.data);
+        if (cats && cats.length > 0) {
+          setCategories(cats);
         }
-        if (platRes.status === "fulfilled" && platRes.value?.success && platRes.value?.data?.length > 0) {
-          setAllPlatforms(platRes.value.data);
+        if (plats && plats.length > 0) {
+          setAllPlatforms(plats);
         }
       } catch (err) {
         console.error("Failed to load platforms from backend, using fallbacks:", err);

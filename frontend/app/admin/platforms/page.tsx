@@ -25,6 +25,7 @@ import {
 import { useAuth } from "@/components/AuthContext";
 import Card3D from "@/components/Card3D";
 import { PlatformCategory } from "@/types";
+import { API_BASE } from "@/lib/api";
 
 interface AdminPlatform {
   id: string;
@@ -101,11 +102,11 @@ export default function AdminPlatformsPage() {
       setLoadingData(true);
       try {
         const [platRes, catRes, statRes] = await Promise.all([
-          fetch("http://localhost:8000/api/v1/admin/platforms", {
+          fetch(`${API_BASE}/admin/platforms`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          fetch("http://localhost:8000/api/v1/platforms/categories"),
-          fetch("http://localhost:8000/api/v1/admin/stats", {
+          fetch(`${API_BASE}/platforms/categories`),
+          fetch(`${API_BASE}/admin/stats`, {
             headers: { Authorization: `Bearer ${token}` }
           })
         ]);
@@ -133,7 +134,7 @@ export default function AdminPlatformsPage() {
   const handleHealthProbe = async (platformId: string) => {
     setHealthChecking(platformId);
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/admin/platforms/${platformId}/health-check`, {
+      const res = await fetch(`${API_BASE}/admin/platforms/${platformId}/health-check`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -159,7 +160,7 @@ export default function AdminPlatformsPage() {
   const handleToggleActive = async (p: AdminPlatform) => {
     const updatedStatus = !p.is_active;
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/admin/platforms/${p.id}`, {
+      const res = await fetch(`${API_BASE}/admin/platforms/${p.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -191,7 +192,7 @@ export default function AdminPlatformsPage() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/api/v1/admin/platforms", {
+      const res = await fetch(`${API_BASE}/admin/platforms`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -236,7 +237,7 @@ export default function AdminPlatformsPage() {
     if (!editingPlatform) return;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/admin/platforms/${editingPlatform.id}`, {
+      const res = await fetch(`${API_BASE}/admin/platforms/${editingPlatform.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

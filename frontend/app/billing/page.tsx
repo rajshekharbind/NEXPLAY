@@ -45,7 +45,8 @@ import {
   addConnectedService, 
   deleteConnectedService, 
   fetchSpendingSummary,
-  fetchPlatforms 
+  fetchPlatforms,
+  API_BASE 
 } from "@/lib/api";
 import { 
   CreditPack, 
@@ -150,13 +151,13 @@ export default function BillingPage() {
         spendingData,
         platformsData
       ] = await Promise.all([
-        fetch("http://localhost:8000/api/v1/billing/subscription", {
+        fetch(`${API_BASE}/billing/subscription`, {
           headers: { Authorization: `Bearer ${currentToken}` }
         }).then(r => r.json()).catch(() => ({ success: false })),
-        fetch("http://localhost:8000/api/v1/billing/transactions", {
+        fetch(`${API_BASE}/billing/transactions`, {
           headers: { Authorization: `Bearer ${currentToken}` }
         }).then(r => r.json()).catch(() => ({ success: false })),
-        fetch("http://localhost:8000/api/v1/billing/payments", {
+        fetch(`${API_BASE}/billing/payments`, {
           headers: { Authorization: `Bearer ${currentToken}` }
         }).then(r => r.json()).catch(() => ({ success: false })),
         fetchCreditPacks(),
@@ -198,7 +199,7 @@ export default function BillingPage() {
     setMessage(null);
     try {
       // 1. Create Checkout Order
-      const orderRes = await fetch("http://localhost:8000/api/v1/billing/checkout/order", {
+      const orderRes = await fetch(`${API_BASE}/billing/checkout/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -213,7 +214,7 @@ export default function BillingPage() {
       const orderJson = await orderRes.json();
 
       // 2. Add Credits to Wallet
-      const res = await fetch("http://localhost:8000/api/v1/billing/add-credits", {
+      const res = await fetch(`${API_BASE}/billing/add-credits`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -225,7 +226,7 @@ export default function BillingPage() {
 
       // 3. Verify Payment
       if (orderJson.success && orderJson.data?.payment_id) {
-        await fetch("http://localhost:8000/api/v1/billing/checkout/verify", {
+        await fetch(`${API_BASE}/billing/checkout/verify`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

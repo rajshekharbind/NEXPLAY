@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Card3D from "@/components/Card3D";
 import { useAuth } from "@/components/AuthContext";
+import { API_BASE } from "@/lib/api";
 
 interface Plan {
   id: string;
@@ -42,7 +43,7 @@ export default function PricingPage() {
   useEffect(() => {
     async function fetchPlans() {
       try {
-        const res = await fetch("http://localhost:8000/api/v1/billing/plans");
+        const res = await fetch(`${API_BASE}/billing/plans`);
         const json = await res.json();
         if (json.success && json.data) {
           setPlans(json.data);
@@ -55,7 +56,7 @@ export default function PricingPage() {
     async function fetchSubscription() {
       if (!token) return;
       try {
-        const res = await fetch("http://localhost:8000/api/v1/billing/subscription", {
+        const res = await fetch(`${API_BASE}/billing/subscription`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const json = await res.json();
@@ -87,7 +88,7 @@ export default function PricingPage() {
       // 1. Create Checkout Order
       let paymentId: string | null = null;
       if (amount > 0) {
-        const orderRes = await fetch("http://localhost:8000/api/v1/billing/checkout/order", {
+        const orderRes = await fetch(`${API_BASE}/billing/checkout/order`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -106,7 +107,7 @@ export default function PricingPage() {
       }
 
       // 2. Process Subscription Plan Update
-      const res = await fetch("http://localhost:8000/api/v1/billing/subscribe", {
+      const res = await fetch(`${API_BASE}/billing/subscribe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -118,7 +119,7 @@ export default function PricingPage() {
 
       // 3. Verify Payment Record if order was created
       if (paymentId) {
-        await fetch("http://localhost:8000/api/v1/billing/checkout/verify", {
+        await fetch(`${API_BASE}/billing/checkout/verify`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

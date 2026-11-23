@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import Card3D from "@/components/Card3D";
 import { useAuth } from "@/components/AuthContext";
-import { toggleWatchlist, fetchWatchlists } from "@/lib/api";
+import { toggleWatchlist, fetchWatchlists, API_BASE } from "@/lib/api";
 
 interface StreamingOption {
   platform_name: string;
@@ -166,7 +166,7 @@ function SearchCatalogContent() {
   useEffect(() => {
     async function loadGenres() {
       try {
-        const res = await fetch("http://localhost:8000/api/v1/content/genres");
+        const res = await fetch(`${API_BASE}/content/genres`);
         const json = await res.json();
         if (json.success && json.data) {
           setGenres(json.data);
@@ -192,7 +192,7 @@ function SearchCatalogContent() {
         if (sortBy) params.append("sort_by", sortBy);
         params.append("limit", "36");
 
-        const res = await fetch(`http://localhost:8000/api/v1/content/search?${params.toString()}`);
+        const res = await fetch(`${API_BASE}/content/search?${params.toString()}`);
         const json = await res.json();
         if (json.success && json.data?.items) {
           setItems(json.data.items);
