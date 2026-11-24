@@ -205,12 +205,18 @@ function PlatformsDirectoryContent() {
                     </div>
 
                     <div>
-                      <h3 className="font-bold text-base text-foreground group-hover:text-indigo-400 transition-colors">
-                        {platform.name}
-                      </h3>
-                      <span className="text-[11px] font-extrabold text-cyan-500 dark:text-cyan-400">
+                      <a
+                        href={platform.official_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-bold text-base text-foreground hover:text-indigo-400 dark:hover:text-cyan-400 transition-colors inline-flex items-center gap-1 cursor-pointer group"
+                      >
+                        <span>{platform.name}</span>
+                        <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                      </a>
+                      <div className="text-[11px] font-extrabold text-cyan-500 dark:text-cyan-400 mt-0.5">
                         {platform.category_name}
-                      </span>
+                      </div>
                       <p className="text-xs text-foreground-muted line-clamp-3 mt-2 leading-relaxed">
                         {platform.description}
                       </p>
@@ -225,7 +231,7 @@ function PlatformsDirectoryContent() {
                       href={platform.official_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-indigo-600/15 hover:bg-indigo-600 text-indigo-500 dark:text-cyan-300 hover:text-white text-xs font-bold transition-all border border-indigo-500/25"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 active:bg-indigo-700 text-indigo-400 dark:text-cyan-300 hover:text-white text-xs font-bold transition-all border border-indigo-500/30 cursor-pointer touch-manipulation active:scale-95 shadow-sm"
                     >
                       <span>Open Service</span>
                       <ExternalLink className="w-3 h-3" />

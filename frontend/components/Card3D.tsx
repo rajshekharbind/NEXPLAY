@@ -68,17 +68,17 @@ export default function Card3D({ children, className = "", glowColor, brandGlowC
       onMouseLeave={handleMouseLeave}
       style={{
         perspective: isTouchDevice ? "none" : "1000px",
-        touchAction: "pan-y",
+        touchAction: "manipulation",
       }}
-      className={`relative transition-all duration-200 select-none ${className}`}
+      className={`relative transition-all duration-200 ${className}`}
     >
       <div
         style={{
           transform: !isTouchDevice && isHovered
             ? `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateZ(10px)`
-            : "rotateX(0deg) rotateY(0deg) translateZ(0px)",
+            : "none",
           transition: isHovered ? "transform 0.1s ease-out" : "transform 0.5s ease-out",
-          transformStyle: "preserve-3d",
+          transformStyle: isTouchDevice ? "flat" : "preserve-3d",
           ...dynamicGlow,
         }}
         className="w-full h-full rounded-2xl relative overflow-hidden active:scale-[0.99] transition-transform"

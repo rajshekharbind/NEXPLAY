@@ -620,9 +620,15 @@ export default function HomePage() {
                     </div>
 
                     <div>
-                      <h3 className="font-bold text-sm sm:text-base text-foreground group-hover:text-indigo-400 transition-colors">
-                        {platform.name}
-                      </h3>
+                      <a
+                        href={platform.official_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-bold text-sm sm:text-base text-foreground hover:text-indigo-400 dark:hover:text-cyan-400 transition-colors inline-flex items-center gap-1 cursor-pointer group"
+                      >
+                        <span>{platform.name}</span>
+                        <ExternalLink className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+                      </a>
                       <p className="text-[11px] text-foreground-muted line-clamp-2 mt-1 leading-relaxed">
                         {platform.description}
                       </p>
@@ -637,7 +643,7 @@ export default function HomePage() {
                       href={platform.official_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs font-bold text-cyan-500 dark:text-cyan-300 hover:text-cyan-400 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-500 dark:text-cyan-300 hover:bg-cyan-500/25 text-xs font-bold transition-all cursor-pointer touch-manipulation active:scale-95"
                     >
                       <span>Open</span>
                       <ExternalLink className="w-3 h-3" />
