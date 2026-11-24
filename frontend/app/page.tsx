@@ -230,7 +230,7 @@ export default function HomePage() {
         </div>
 
         {/* Touch-Scrollable Horizontal Category Menu */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-3 px-3 sm:mx-0 sm:px-0">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 w-full max-w-full">
           {[
             { label: "All Hub", href: "/", icon: Play, color: "text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow-md shadow-indigo-500/20" },
             { label: "Movies & OTT", href: "/search?type=MOVIE", icon: Film, color: "text-red-500 bg-red-500/10 border border-red-500/30 hover:bg-red-500/20" },

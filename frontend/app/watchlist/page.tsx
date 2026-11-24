@@ -296,7 +296,7 @@ export default function WatchlistPage() {
         )}
 
         {/* Status Filter Navigation (Horizontal swipeable on mobile) */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-2 border-t border-surface-border/50 -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-2 border-t border-surface-border/50 w-full max-w-full sm:flex-wrap">
           {STATUS_FILTERS.map((tab) => {
             const Icon = tab.icon;
             const count =

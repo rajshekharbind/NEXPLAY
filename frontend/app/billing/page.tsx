@@ -546,7 +546,7 @@ export default function BillingPage() {
       </div>
 
       {/* Tabbed Navigation Bar (Touch Swipeable on Mobile, Wrapped on Desktop) */}
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar border-b border-surface-border pb-2 -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar border-b border-surface-border pb-2 w-full max-w-full sm:flex-wrap">
         {[
           { id: "overview", label: "Overview & Analytics", icon: BarChart3 },
           { id: "tracker", label: `Spending Tracker (${connectedServices.length})`, icon: Tv },

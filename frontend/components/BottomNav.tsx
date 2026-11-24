@@ -52,21 +52,16 @@ export default function BottomNav() {
             aria-label="Open Entertainment Menu"
           >
             <div className="relative">
-              <div className={cn(
-                "w-7 h-7 rounded-lg flex items-center justify-center transition-all",
-                isEntertainmentMenuOpen ? "bg-red-500/20 text-red-400 border border-red-500/40" : ""
-              )}>
-                <Film className={cn("w-5 h-5 transition-transform", isEntertainmentMenuOpen ? "scale-110 text-red-400" : "")} />
-              </div>
+              <Film className={cn("w-5 h-5 transition-transform", isEntertainmentMenuOpen ? "scale-110 text-red-400" : "")} />
               {isEntertainmentMenuOpen && (
                 <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-red-400 shadow-[0_0_8px_#E50914]" />
               )}
             </div>
             <span className={cn(
-              "text-[8.5px] tracking-tight mt-0.5 transition-colors font-bold truncate max-w-full px-0.5",
+              "text-[9px] tracking-tight mt-1 transition-colors font-semibold",
               isEntertainmentMenuOpen ? "font-black text-red-400" : "text-slate-400"
             )}>
-              Entertainment
+              Menu
             </span>
           </button>
 

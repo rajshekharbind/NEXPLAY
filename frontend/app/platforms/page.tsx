@@ -107,7 +107,7 @@ function PlatformsDirectoryContent() {
       </div>
 
       {/* Category Filter Pills (Touch Swipeable on Mobile, Wrapped on Desktop) */}
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 border-b border-surface-border -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 border-b border-surface-border w-full max-w-full sm:flex-wrap">
         <button
           onClick={() => {
             if (searchQuery) {

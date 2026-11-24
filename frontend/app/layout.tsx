@@ -38,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className="min-h-screen bg-background text-foreground flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+    <html lang="en" className="dark overflow-x-hidden max-w-full" suppressHydrationWarning>
+      <body className="min-h-screen bg-background text-foreground flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300 overflow-x-hidden w-full max-w-full">
         <ThemeProvider>
           <AuthProvider>
             <PWARegister />
@@ -48,10 +48,10 @@ export default function RootLayout({
             <BackgroundAurora />
 
             <Navbar />
-            <div className="flex flex-1 max-w-7xl w-full mx-auto">
+            <div className="flex flex-1 max-w-7xl w-full mx-auto overflow-x-hidden">
               <Sidebar />
               {/* pb-24 md:pb-8 ensures comfortable thumb spacing on mobile & Android devices above BottomNav */}
-              <main className="flex-1 p-3 sm:p-5 lg:p-8 min-w-0 z-10 pb-24 md:pb-8">
+              <main className="flex-1 p-3 sm:p-5 lg:p-8 min-w-0 z-10 pb-24 md:pb-8 w-full max-w-full overflow-x-hidden">
                 {children}
               </main>
             </div>

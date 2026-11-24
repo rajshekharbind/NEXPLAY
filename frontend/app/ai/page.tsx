@@ -264,7 +264,7 @@ export default function AICopilotPage() {
             Instant Vibe Presets:
           </p>
 
-          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0">
+          <div className="flex items-center gap-2.5 overflow-x-auto pb-2 no-scrollbar w-full max-w-full">
             {moods.map((mood) => {
               const Icon = MOOD_ICONS[mood.icon] || Sparkles;
               const isSelected = activeMood === mood.id;
