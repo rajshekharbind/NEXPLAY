@@ -31,11 +31,14 @@ import {
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { useAuth } from "./AuthContext";
+import EntertainmentMenuModal from "./EntertainmentMenuModal";
 
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showEntertainmentDropdown, setShowEntertainmentDropdown] = useState(false);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const [isEntertainmentModalOpen, setIsEntertainmentModalOpen] = useState(false);
   const router = useRouter();
   const { user, isAuthenticated, logout } = useAuth();
 
@@ -135,6 +138,75 @@ export default function Navbar() {
 
         {/* Action Controls, AI Credits, Auth & Dark/Light Toggle */}
         <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          {/* Mobile Entertainment Menu Trigger Button */}
+          <button
+            type="button"
+            onClick={() => setIsEntertainmentModalOpen(true)}
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500 dark:text-red-400 text-xs font-bold sm:hidden active:scale-95 transition-all cursor-pointer"
+            aria-label="Open Entertainment Menu"
+          >
+            <Film className="w-3.5 h-3.5 text-red-500" />
+            <span>Menu</span>
+          </button>
+
+          {/* Desktop Entertainment Dropdown */}
+          <div className="relative hidden md:block">
+            <button
+              type="button"
+              onClick={() => setShowEntertainmentDropdown(!showEntertainmentDropdown)}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition-all cursor-pointer"
+            >
+              <Film className="w-3.5 h-3.5 text-red-500" />
+              <span>Entertainment</span>
+              <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${showEntertainmentDropdown ? "rotate-180" : ""}`} />
+            </button>
+
+            {showEntertainmentDropdown && (
+              <div 
+                className="absolute left-0 mt-2 w-72 rounded-2xl glass-panel border border-surface-border shadow-2xl p-2.5 space-y-1 z-50 animate-in fade-in zoom-in-95 duration-150"
+                onMouseLeave={() => setShowEntertainmentDropdown(false)}
+              >
+                <div className="px-2 py-1.5 border-b border-surface-border flex items-center justify-between">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                    Entertainment Categories
+                  </span>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20">
+                    40+ APPS
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 gap-1 pt-1">
+                  {[
+                    { name: "Movies & OTT", href: "/search?type=MOVIE", icon: Film, color: "text-red-500", desc: "Blockbusters & cinema" },
+                    { name: "Web Series", href: "/search?type=SERIES", icon: Tv, color: "text-blue-500", desc: "Binge-worthy shows" },
+                    { name: "Music & Audio", href: "/search?type=SONG", icon: Music, color: "text-emerald-400", desc: "Songs & playlists" },
+                    { name: "Anime Universe", href: "/search?type=ANIME", icon: Sparkles, color: "text-orange-400", desc: "Simulcasts & classics" },
+                    { name: "Podcasts & Shows", href: "/search?type=PODCAST", icon: Headphones, color: "text-cyan-400", desc: "Talk shows & tech" },
+                    { name: "Videos & Creators", href: "/search?type=VIDEO", icon: Video, color: "text-purple-400", desc: "Trailers & docuseries" },
+                    { name: "40+ Platforms", href: "/platforms", icon: Compass, color: "text-indigo-400", desc: "All 43 destinations" },
+                  ].map((cat) => {
+                    const Icon = cat.icon;
+                    return (
+                      <Link
+                        key={cat.name}
+                        href={cat.href}
+                        onClick={() => setShowEntertainmentDropdown(false)}
+                        className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group"
+                      >
+                        <Icon className={`w-4 h-4 ${cat.color}`} />
+                        <div className="flex-1">
+                          <p className="text-xs font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-400 transition-colors">
+                            {cat.name}
+                          </p>
+                          <p className="text-[10px] text-slate-400">{cat.desc}</p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
           {/* Quick Search Button on Mobile */}
           <Link
             href="/search"
@@ -443,6 +515,12 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+      {/* Interactive Entertainment Menu Modal (Mobile Bottom Sheet / Desktop Modal) */}
+      <EntertainmentMenuModal 
+        isOpen={isEntertainmentModalOpen} 
+        onClose={() => setIsEntertainmentModalOpen(false)} 
+      />
     </header>
   );
 }

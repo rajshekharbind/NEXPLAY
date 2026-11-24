@@ -19,6 +19,7 @@ import {
   Flame,
   Radio,
   Tv,
+  Headphones,
   Bookmark,
   Star,
   Clock,
@@ -206,6 +207,52 @@ export default function HomePage() {
             <span className="px-2 py-0.5 rounded-md bg-[#0070D1]/10 text-[#0070D1] border border-[#0070D1]/20 text-[10px] font-black">SONY</span>
             <span className="px-2 py-0.5 rounded-md bg-[#FF0033]/10 text-[#FF0033] border border-[#FF0033]/20 text-[10px] font-black">YOUTUBE</span>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile-First Interactive Entertainment Menu Bar */}
+      <div className="space-y-2.5">
+        <div className="flex items-center justify-between px-1">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+            <h2 className="text-xs font-black uppercase tracking-wider text-foreground flex items-center gap-1.5">
+              <Film className="w-3.5 h-3.5 text-red-500" />
+              <span>Entertainment Menu</span>
+            </h2>
+          </div>
+          <Link
+            href="/platforms"
+            className="text-[11px] font-bold text-indigo-500 dark:text-cyan-400 hover:underline flex items-center gap-1"
+          >
+            <span>All 40+ Platforms</span>
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+        </div>
+
+        {/* Touch-Scrollable Horizontal Category Menu */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-3 px-3 sm:mx-0 sm:px-0">
+          {[
+            { label: "All Hub", href: "/", icon: Play, color: "text-white bg-gradient-to-r from-indigo-600 to-cyan-500 shadow-md shadow-indigo-500/20" },
+            { label: "Movies & OTT", href: "/search?type=MOVIE", icon: Film, color: "text-red-500 bg-red-500/10 border border-red-500/30 hover:bg-red-500/20" },
+            { label: "Web Series", href: "/search?type=SERIES", icon: Tv, color: "text-blue-500 bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20" },
+            { label: "Music & Songs", href: "/search?type=SONG", icon: Music, color: "text-emerald-500 bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20" },
+            { label: "Anime Universe", href: "/search?type=ANIME", icon: Sparkles, color: "text-orange-500 bg-orange-500/10 border border-orange-500/30 hover:bg-orange-500/20" },
+            { label: "Podcasts & Audio", href: "/search?type=PODCAST", icon: Headphones, color: "text-cyan-500 bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20" },
+            { label: "Videos & Creators", href: "/search?type=VIDEO", icon: Video, color: "text-purple-500 bg-purple-500/10 border border-purple-500/30 hover:bg-purple-500/20" },
+            { label: "40+ Platforms", href: "/platforms", icon: Compass, color: "text-indigo-400 bg-indigo-500/10 border border-indigo-500/30 hover:bg-indigo-500/20" },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold shrink-0 transition-all active:scale-95 ${item.color}`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
         </div>
       </div>
 
