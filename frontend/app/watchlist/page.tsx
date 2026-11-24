@@ -295,8 +295,8 @@ export default function WatchlistPage() {
           </div>
         )}
 
-        {/* Status Filter Navigation */}
-        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-surface-border/50">
+        {/* Status Filter Navigation (Horizontal swipeable on mobile) */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-2 border-t border-surface-border/50 -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap">
           {STATUS_FILTERS.map((tab) => {
             const Icon = tab.icon;
             const count =
@@ -309,7 +309,7 @@ export default function WatchlistPage() {
               <button
                 key={tab.value}
                 onClick={() => setStatusFilter(tab.value)}
-                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all border ${
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all border shrink-0 ${
                   isSelected
                     ? "bg-indigo-600 text-white border-indigo-500 shadow-md scale-105"
                     : "bg-surface-card/60 text-foreground-muted hover:text-foreground hover:bg-surface border-surface-border"

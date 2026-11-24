@@ -281,7 +281,7 @@ function SearchCatalogContent() {
       </div>
 
       {/* Category Navigation Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-surface-border">
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar -mx-3 px-3 sm:mx-0 sm:px-0 border-b border-surface-border">
         {CATEGORY_TABS.map((tab) => {
           const Icon = tab.icon;
           const isActive = selectedType === tab.value;

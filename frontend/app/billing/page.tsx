@@ -545,8 +545,8 @@ export default function BillingPage() {
         </Card3D>
       </div>
 
-      {/* Tabbed Navigation Bar */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-surface-border pb-2">
+      {/* Tabbed Navigation Bar (Touch Swipeable on Mobile, Wrapped on Desktop) */}
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar border-b border-surface-border pb-2 -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap">
         {[
           { id: "overview", label: "Overview & Analytics", icon: BarChart3 },
           { id: "tracker", label: `Spending Tracker (${connectedServices.length})`, icon: Tv },
@@ -560,7 +560,7 @@ export default function BillingPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shrink-0 ${
                 isActive 
                   ? "bg-foreground text-background shadow-md" 
                   : "bg-surface-card hover:bg-surface-elevated text-muted-foreground hover:text-foreground border border-surface-border"

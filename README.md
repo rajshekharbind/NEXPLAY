@@ -220,38 +220,59 @@ POST http://localhost:8000/api/v1/admin/platforms — Create new platform
 PUT http://localhost:8000/api/v1/admin/platforms/{id} — Update platform details & deep link URLs
 DELETE http://localhost:8000/api/v1/admin/platforms/{id} — Deactivate/delete platform
 
+## 📱 Responsive & Cross-Platform Support (Mobile, Android, iOS, Laptop, Desktop)
+
+NEXPLAY is built with a **Mobile-First, Device-Agnostic Responsive Architecture**:
+
+- **📱 Mobile & Android / iOS PWA**:
+  - **Progressive Web App (PWA)**: Full web manifest (`manifest.json`) and service worker (`sw.js`) enabling installability on Android (Chrome/Firefox/Samsung Internet) and iOS (Safari "Add to Home Screen"). Runs standalone without browser address bar.
+  - **Thumb-Friendly Bottom Navigation**: Fixed bottom app bar on screens `< 768px` providing one-tap access to Home, Explore, Search, AI Copilot, Watchlist, and Credit Wallet with safe-area insets (`env(safe-area-inset-bottom)`).
+  - **Slide-Over Drawer**: Full-screen slide navigation drawer with category browsing, tools hub, and profile actions.
+  - **Touch & Gesture Optimized**: Physics tilt cards automatically disable 3D mouse tracking on touch devices (`hover: none`) ensuring buttery-smooth 60fps vertical swipe scrolling without stutter.
+  - **Horizontal Touch Carousels**: Platform filters, status pills, and billing tabs support smooth touch swipe with hidden scrollbars (`no-scrollbar`).
+
+- **💻 Laptop & Desktop (1024px – 2560px+)**:
+  - Full top header with dropdowns, live search modal, user profile pill, and live AI credit wallet meter.
+  - Interactive 3D Card Physics with dynamic brand auras (Netflix red, Spotify green, Prime cyan, Sony Liv blue, YouTube red).
+  - Multi-column grids (2-column on mobile, 3-column on tablet, 4-column on laptop/desktop) for platforms, catalog titles, and automation metrics.
+
+---
+
 ## 📜 10-Phase Roadmap Summary
 
-- [x] **Phase 1: Foundation & Setup** — Complete project scaffolding, dual database config (Postgres/SQLite), Alembic migrations, 40+ platforms database seed, Next.js 14 dark theme UI, health API, and test suite.
-- [ ] **Phase 2: Authentication & RBAC** — JWT rotation, password hashing, user profiles, role enforcement.
-- [ ] **Phase 3: Platform Catalog & Admin** — Admin CRUD for platforms, category management.
-- [ ] **Phase 4: Content Catalog & Search** — Multi-category search engine, availability indicators.
-- [ ] **Phase 5: Dashboard & Watchlist** — Personalized dashboard, private user watchlists, deep linking.
-- [ ] **Phase 6: AI Recommendation Engine** — LangGraph copilot, semantic vector recommendations.
-- [ ] **Phase 7: MCP Server & Tools** — Anthropic Model Context Protocol server exposing 10+ entertainment tools.
-- [ ] **Phase 8: Playwright Automation & Celery** — Deep link audits, background task workers.
-- [ ] **Phase 9: Billing & Credit Wallet** — Razorpay payment integration, credit balance management, usage metering.
-- [ ] **Phase 10: DevOps, Production CI/CD & Testing** — Security auditing, E2E tests, cloud deployment.
+- [x] **Phase 1: Foundation & Setup** — Complete project scaffolding, dual database config (Postgres/SQLite), Alembic migrations, 43 platforms database seed, Next.js 14 dark theme UI, health API, and test suite.
+- [x] **Phase 2: Authentication & RBAC** — JWT rotation, password hashing, user profiles, role enforcement (ADMIN, USER, CURATOR).
+- [x] **Phase 3: Platform Catalog & Admin** — Admin CRUD for platforms, category management, automated deep linking.
+- [x] **Phase 4: Content Catalog & Search** — Multi-category search engine, availability indicators, genre filtering.
+- [x] **Phase 5: Dashboard & Watchlist** — Personalized dashboard, private user watchlists, deep linking.
+- [x] **Phase 6: AI Recommendation Engine** — LangGraph/Gemini AI copilot, mood presets, multi-service discovery.
+- [x] **Phase 7: MCP Server & Tools** — Anthropic Model Context Protocol server exposing 11 entertainment tools.
+- [x] **Phase 8: Playwright Automation & Celery** — Deep link audits, background task workers, link health sentinels.
+- [x] **Phase 9: Billing & Credit Wallet** — Razorpay payment integration, credit balance management, usage metering.
+- [x] **Phase 10: DevOps, Production CI/CD & Testing** — Security auditing, mobile/PWA responsiveness, live Render & Vercel deployment.
 
+---
 
+## 🌐 Live Cloud Deployment
 
+- **Brand Slogan**: "One Account. Every Entertainment Destination."
+- **GitHub Repository**: [https://github.com/rajshekharbind/NEXPLAY](https://github.com/rajshekharbind/NEXPLAY)
+- **Backend API (Render)**: [https://nexplay-backend-lpdz.onrender.com](https://nexplay-backend-lpdz.onrender.com)
+- **Interactive Swagger Docs**: [https://nexplay-backend-lpdz.onrender.com/docs](https://nexplay-backend-lpdz.onrender.com/docs)
+- **Frontend Web App (Vercel)**: [https://nexplay.vercel.app](https://nexplay.vercel.app)
 
- 🎬 NEXPLAY — Unified Entertainment Aggregator & AI Discovery Hub
+---
 
-Brand Slogan: "One Account. Every Entertainment Destination."
-GitHub Repository: https://github.com/rajshekharbind/NEXPLAY
-Backend API (Render): https://nexplay-backend-lpdz.onrender.com
-Interactive API Docs (Swagger): https://nexplay-backend-lpdz.onrender.com/docs
-Frontend Web App (Vercel): https://nexplay.vercel.app
+### Local Development Quickstart
 
-🌟 3. Complete Feature Summary (All 10 Stages)
-Stage 1: System Foundation: 25 SQLAlchemy models, 43 seeded entertainment platforms across 6 categories.
-Stage 2: Auth & RBAC Security: Secure JWT token rotation, user profile initialization, and role guards (USER, PREMIUM_USER, ADMIN).
-Stage 3: Platform Directory & Admin CRUD: 43-platform directory with category tabs and admin management interface.
-Stage 4: Unified Catalog Search: Cross-platform search engine covering Movies, Series, Songs, Podcasts, and Anime with direct deep links.
-Stage 5: Private Watchlist System: User-isolated queue with 1-click bookmarking and status tracking (WATCHING, COMPLETED, PLANNED).
-Stage 6: AI Copilot & Mood Engine: Conversational AI discovery, 6 mood presets, multi-factor ranking, and credit accounting.
-Stage 7: Model Context Protocol (MCP): Anthropic-compliant tool server with 11 native entertainment discovery tools and JSON-RPC 2.0 gateway.
-Stage 8: Background Workers & Link Health Sentinel: Scheduled automation jobs, Playwright health checks, and subscription renewal alerts.
-Stage 9: Enterprise Billing & Spending Intelligence: Credit wallet analytics, 4 volume booster packs, external streaming subscription tracker (Netflix, Spotify, Prime), and 18% GST tax invoices.
-Stage 10: Production Deployment & CI/CD: Live deployment on Render (Backend) and Vercel (Frontend) with Docker readiness.
+- **Backend API**:
+  ```powershell
+  cd backend
+  .\.venv\Scripts\uvicorn.exe app.main:app --reload --port 8000
+  ```
+
+- **Frontend App**:
+  ```powershell
+  cd frontend
+  npm run dev
+  ```

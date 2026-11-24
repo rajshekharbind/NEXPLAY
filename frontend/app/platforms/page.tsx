@@ -106,8 +106,8 @@ function PlatformsDirectoryContent() {
         </p>
       </div>
 
-      {/* Category Filter Pills */}
-      <div className="flex flex-wrap items-center gap-2 pt-2 border-b border-surface-border pb-4">
+      {/* Category Filter Pills (Touch Swipeable on Mobile, Wrapped on Desktop) */}
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 border-b border-surface-border -mx-3 px-3 sm:mx-0 sm:px-0 sm:flex-wrap">
         <button
           onClick={() => {
             if (searchQuery) {
@@ -116,7 +116,7 @@ function PlatformsDirectoryContent() {
               router.push("/platforms");
             }
           }}
-          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
             !selectedCategory
               ? "bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-md shadow-indigo-500/25"
               : "bg-surface-card hover:bg-surface text-foreground-muted hover:text-foreground border border-surface-border"
@@ -136,7 +136,7 @@ function PlatformsDirectoryContent() {
                   : `/platforms?category=${cat.slug}`;
                 router.push(url);
               }}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
                 isActive
                   ? "bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-md shadow-indigo-500/25"
                   : "bg-surface-card hover:bg-surface text-foreground-muted hover:text-foreground border border-surface-border"

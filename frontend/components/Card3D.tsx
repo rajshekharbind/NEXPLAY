@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 interface Card3DProps {
   children: React.ReactNode;
@@ -10,16 +10,24 @@ interface Card3DProps {
   intensity?: number;
 }
 
-export default function Card3D({ children, className = "", glowColor, brandGlowColor, intensity = 10 }: Card3DProps) {
+export default function Card3D({ children, className = "", glowColor, brandGlowColor, intensity = 8 }: Card3DProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [glarePosition, setGlarePosition] = useState({ x: 50, y: 50 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    // Detect touch-only mobile devices to avoid interfering with scrolling
+    if (typeof window !== "undefined") {
+      setIsTouchDevice(window.matchMedia("(hover: none)").matches);
+    }
+  }, []);
 
   const activeGlow = glowColor || brandGlowColor;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (isTouchDevice || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -28,7 +36,7 @@ export default function Card3D({ children, className = "", glowColor, brandGlowC
     const centerY = rect.height / 2;
 
     // 3D tilt calculation calibrated by intensity
-    const maxTilt = intensity || 10;
+    const maxTilt = intensity || 8;
     const rotateX = ((y - centerY) / centerY) * -maxTilt;
     const rotateY = ((x - centerX) / centerX) * maxTilt;
 
@@ -39,13 +47,16 @@ export default function Card3D({ children, className = "", glowColor, brandGlowC
     });
   };
 
-  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseEnter = () => {
+    if (!isTouchDevice) setIsHovered(true);
+  };
+
   const handleMouseLeave = () => {
     setIsHovered(false);
     setRotation({ x: 0, y: 0 });
   };
 
-  const dynamicGlow = activeGlow && isHovered ? {
+  const dynamicGlow = activeGlow && isHovered && !isTouchDevice ? {
     boxShadow: `0 14px 40px -10px ${activeGlow}, 0 0 25px -5px ${activeGlow}`
   } : undefined;
 
@@ -56,29 +67,31 @@ export default function Card3D({ children, className = "", glowColor, brandGlowC
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
-        perspective: "1000px",
+        perspective: isTouchDevice ? "none" : "1000px",
+        touchAction: "pan-y",
       }}
-      className="relative transition-transform duration-200"
+      className={`relative transition-all duration-200 select-none ${className}`}
     >
       <div
         style={{
-          transform: isHovered
-            ? `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateZ(12px) scale3d(1.02, 1.02, 1.02)`
-            : "rotateX(0deg) rotateY(0deg) translateZ(0px) scale3d(1, 1, 1)",
+          transform: !isTouchDevice && isHovered
+            ? `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) translateZ(10px)`
+            : "rotateX(0deg) rotateY(0deg) translateZ(0px)",
+          transition: isHovered ? "transform 0.1s ease-out" : "transform 0.5s ease-out",
           transformStyle: "preserve-3d",
-          ...dynamicGlow
+          ...dynamicGlow,
         }}
-        className={`relative transition-all duration-200 ease-out overflow-hidden ${className}`}
+        className="w-full h-full rounded-2xl relative overflow-hidden active:scale-[0.99] transition-transform"
       >
         {children}
 
-        {/* 3D Dynamic Specular Glare */}
-        {isHovered && (
+        {/* Dynamic Specular Glare (Desktop only) */}
+        {!isTouchDevice && isHovered && (
           <div
+            className="pointer-events-none absolute inset-0 z-20 mix-blend-overlay opacity-30 transition-opacity duration-300 rounded-2xl"
             style={{
-              background: `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 65%)`,
+              background: `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%)`,
             }}
-            className="pointer-events-none absolute inset-0 z-20 mix-blend-overlay transition-opacity duration-300"
           />
         )}
       </div>

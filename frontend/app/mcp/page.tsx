@@ -143,10 +143,10 @@ export default function MCPPlaygroundPage() {
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex items-center gap-2 bg-white dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm shrink-0">
+          <div className="flex items-center gap-2 bg-white dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto no-scrollbar max-w-full shrink-0">
             <button
               onClick={() => setActiveTab("runner")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold shrink-0 whitespace-nowrap transition-all ${
                 activeTab === "runner"
                   ? "bg-cyan-600 text-white shadow-md"
                   : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
@@ -157,7 +157,7 @@ export default function MCPPlaygroundPage() {
             </button>
             <button
               onClick={() => setActiveTab("setup")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold shrink-0 whitespace-nowrap transition-all ${
                 activeTab === "setup"
                   ? "bg-cyan-600 text-white shadow-md"
                   : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"

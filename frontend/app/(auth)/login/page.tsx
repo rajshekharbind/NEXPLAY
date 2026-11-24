@@ -38,7 +38,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-10 px-4">
       <Card3D glowColor="rgba(99, 102, 241, 0.45)" className="w-full max-w-md">
-        <div className="glass-card rounded-3xl p-8 sm:p-10 border border-surface-border shadow-2xl relative">
+        <div className="glass-card rounded-3xl p-6 sm:p-10 border border-surface-border shadow-2xl relative">
           {/* Header */}
           <div className="text-center space-y-2 mb-8">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#E50914] via-[#0070D1] to-[#1DB954] p-[1.5px] mx-auto shadow-lg mb-3">
